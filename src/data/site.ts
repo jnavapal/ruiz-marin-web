@@ -67,10 +67,9 @@ export const SITE = {
 
 /** Años de experiencia y cifras de confianza (E-E-A-T). Ajustar a datos reales. */
 export const STATS = [
-  { value: '+9', label: 'años de experiencia', detail: 'de los socios en Big Four y empresa privada' },
+  { value: '+9', label: 'años de experiencia', detail: 'de los socios en Big Four y dirección financiera de empresa privada' },
+  { value: '8', label: 'sectores atendidos', detail: 'de la industria al sector público y el tercer sector' },
   { value: '4', label: 'corporaciones profesionales', detail: 'ICJCE, ROAC, Colegio de Economistas y AECA' },
-  { value: '100%', label: 'trabajos firmados por auditor ROAC', detail: 'inscrito en el registro oficial' },
-  { value: '{{nº}}', label: 'sectores atendidos', detail: 'industria, comercio, servicios y entidades sin ánimo de lucro' },
 ] as const;
 
 /** Credenciales y pertenencias profesionales (bloque de confianza / E-E-A-T). */

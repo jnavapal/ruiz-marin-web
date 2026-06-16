@@ -49,10 +49,11 @@ const schema = graph(serviceSchema, faqSchema(c.faqs));
     <div class="grid gap-12 lg:grid-cols-12">
       <!-- Contenido principal -->
       <div class="lg:col-span-8">
-        <p class="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-sm font-medium text-brand-700">
+        <p class="flex items-center gap-3 text-sm font-medium text-brand-700">
+          <span class="h-px w-7 shrink-0 bg-brand-300"></span>
           {c.forWhom}
         </p>
-        <h1 class="mt-4 text-h1">{c.h1}</h1>
+        <h1 class="mt-5 text-h1">{c.h1}</h1>
         <p class="mt-5 max-w-prose text-lg leading-relaxed text-ink-soft">{c.lead}</p>
 
         <!-- Definición (GEO/AIO) -->
@@ -65,10 +66,10 @@ const schema = graph(serviceSchema, faqSchema(c.faqs));
 
         <!-- Bloques de contenido -->
         {
-          c.blocks.map((b) => (
-            <section class="mt-12">
-              <div class="accent-rule mb-4" />
-              <h2 class="text-h2">{b.heading}</h2>
+          c.blocks.map((b, i) => (
+            <section class="mt-10 border-t border-sand-200 pt-8">
+              <p class="font-serif text-sm font-semibold text-accent-600">{String(i + 1).padStart(2, '0')}</p>
+              <h2 class="mt-1 text-h2">{b.heading}</h2>
               <div class="prose-rm mt-4 max-w-prose" set:html={b.html} />
             </section>
           ))

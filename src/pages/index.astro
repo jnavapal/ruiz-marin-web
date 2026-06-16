@@ -4,7 +4,7 @@ import ServiceCard from '../components/ServiceCard.astro';
 import Credentials from '../components/Credentials.astro';
 import CtaSection from '../components/CtaSection.astro';
 import Faq from '../components/Faq.astro';
-import { SITE, SERVICES, STATS } from '../data/site';
+import { SERVICES, STATS } from '../data/site';
 import { organizationSchema, accountingServiceSchema, faqSchema, graph } from '../lib/schema';
 
 const title = 'Ruiz & Marín · Auditores de cuentas en Burgos (ROAC)';
@@ -28,81 +28,78 @@ const homeFaqs = [
 
 const schema = graph(organizationSchema(), accountingServiceSchema(), faqSchema(homeFaqs));
 
-const valores = [
-  {
-    title: 'Rigor técnico',
-    text: 'Aplicamos las Normas Internacionales de Auditoría (NIA-ES) y la doctrina del ICAC, con metodología documentada y revisión de calidad en cada encargo.',
-    icon: 'M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
-  },
+const ficha = [
+  { k: 'Inscripción', v: 'Registro Oficial de Auditores de Cuentas (ROAC)' },
+  { k: 'Sede', v: 'Burgos · Castilla y León' },
+  { k: 'Ámbito', v: 'Toda España' },
+  { k: 'A quién acompañamos', v: 'Pymes, fundaciones y profesionales' },
+];
+
+const metodo = [
   {
     title: 'Independencia',
-    text: 'Garantizamos la independencia exigida al auditor: objetividad, ausencia de conflictos de interés y un juicio profesional libre de presiones.',
-    icon: 'M12 3v18m9-9H3m15.364 6.364L5.636 5.636m12.728 0L5.636 18.364',
+    text: 'El núcleo de la auditoría. Mantenemos la objetividad y evitamos cualquier conflicto de interés en todos los encargos.',
+  },
+  {
+    title: 'Rigor técnico',
+    text: 'Trabajamos conforme a las Normas Internacionales de Auditoría (NIA-ES) y a la doctrina del ICAC, con control de calidad documentado.',
   },
   {
     title: 'Confidencialidad',
-    text: 'Su información se trata bajo secreto profesional del auditor y medidas estrictas de seguridad. Nada se comparte sin su consentimiento.',
-    icon: 'M16.5 10.5V7.5a4.5 4.5 0 1 0-9 0v3m-.75 0h10.5a2.25 2.25 0 0 1 2.25 2.25v6A2.25 2.25 0 0 1 17.25 21H6.75A2.25 2.25 0 0 1 4.5 18.75v-6A2.25 2.25 0 0 1 6.75 10.5Z',
+    text: 'Su información se trata bajo el secreto profesional del auditor. Nada se comparte sin su consentimiento.',
   },
   {
-    title: 'Cercanía y plazos',
-    text: 'Trato directo con los socios, calendario realista y cumplimiento de los plazos legales de formulación, aprobación y depósito de cuentas.',
-    icon: 'M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
+    title: 'Trato directo',
+    text: 'Habla siempre con el socio que firma. Calendario realista y cumplimiento de los plazos legales de cuentas.',
   },
 ];
 ---
 
 <BaseLayout title={title} description={description} schema={schema} canonicalPath="/">
   <!-- Hero -->
-  <section class="relative overflow-hidden bg-brand-900 text-white">
-    <div class="absolute inset-x-0 top-0 h-1 bg-accent-400"></div>
-    <div
-      class="pointer-events-none absolute inset-0 opacity-[0.07]"
-      style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"
-      aria-hidden="true"
-    >
-    </div>
-    <div class="container-rm relative grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center">
+  <section class="border-b border-white/10 bg-brand-900 text-white">
+    <div class="h-px w-full bg-gradient-to-r from-accent-500/0 via-accent-400/80 to-accent-500/0"></div>
+    <div class="container-rm grid gap-14 py-20 md:py-28 lg:grid-cols-12 lg:gap-10">
       <div class="lg:col-span-7">
-        <p class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-sand-200">
-          <span class="h-1.5 w-1.5 rounded-full bg-accent-400"></span>
-          Auditores de cuentas inscritos en el ROAC · Burgos
+        <p class="flex items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-accent-300">
+          <span class="h-px w-7 bg-accent-400/70"></span>
+          Auditoría de cuentas · ROAC · Burgos
         </p>
-        <h1 class="mt-5 max-w-3xl font-serif text-display font-semibold text-white">
+        <h1 class="mt-6 max-w-3xl font-serif text-display font-semibold leading-[1.05] text-white">
           Auditoría de cuentas con rigor, independencia y confidencialidad
         </h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-sand-200/90">
-          Ayudamos a pymes y profesionales a cumplir sus obligaciones de auditoría y a justificar
-          subvenciones y deducciones con seguridad jurídica. Informes firmados por auditor inscrito
+        <p class="mt-7 max-w-2xl text-lg leading-relaxed text-sand-200/85">
+          Acompañamos a pymes y profesionales a cumplir sus obligaciones de auditoría y a justificar
+          subvenciones y deducciones con seguridad jurídica. Cada informe lo firma un auditor inscrito
           en el ROAC, conforme a la normativa vigente.
         </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="/contacto" class="btn bg-white text-brand-800 hover:bg-sand-100 hover:text-brand-900">
+        <div class="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+          <a href="/contacto" class="btn bg-white text-brand-900 hover:bg-sand-100 hover:text-brand-900">
             Solicitar presupuesto
           </a>
-          <a href="/servicios" class="btn border border-white/30 text-white hover:bg-white/10 hover:text-white">
-            Ver servicios
+          <a href="/servicios" class="group inline-flex items-center gap-2 font-semibold text-white no-underline">
+            Ver los servicios
+            <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h12M11 5l5 5-5 5" />
+            </svg>
           </a>
         </div>
       </div>
-      <div class="lg:col-span-5">
-        <ul class="grid gap-3 rounded-card border border-white/10 bg-white/[0.04] p-5">
+
+      <!-- Ficha del despacho -->
+      <div class="lg:col-span-5 lg:pl-6">
+        <dl class="divide-y divide-white/10 border-t border-white/15">
           {
-            [
-              'Auditoría obligatoria y voluntaria de cuentas anuales',
-              'Justificación de subvenciones de I+D, FEDER y CDTI',
-              'Acreditación de deducciones fiscales',
-              'Procedimientos acordados e informes especiales',
-            ].map((item) => (
-              <li class="flex items-start gap-3 text-sand-100">
-                <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                </svg>
-                <span>{item}</span>
-              </li>
+            ficha.map((row) => (
+              <div class="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+                <dt class="w-44 shrink-0 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-sand-200/55">
+                  {row.k}
+                </dt>
+                <dd class="text-[0.975rem] text-sand-100">{row.v}</dd>
+              </div>
             ))
           }
-        </ul>
+        </dl>
       </div>
     </div>
   </section>
@@ -111,72 +108,64 @@ const valores = [
   <Credentials />
 
   <!-- Servicios -->
-  <section class="container-rm py-20" aria-labelledby="servicios-home">
-    <div class="max-w-2xl">
-      <div class="accent-rule mb-4"></div>
-      <h2 id="servicios-home" class="text-h2">Servicios de auditoría y aseguramiento</h2>
-      <p class="mt-3 text-lg text-ink-soft">
-        Cada encargo responde a una necesidad concreta: qué es, cuándo lo necesita y qué entregable
-        recibe. Sin marketing vacío.
-      </p>
-    </div>
-    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {SERVICES.map((s, i) => <ServiceCard service={s} number={i + 1} />)}
-      <a
-        href="/servicios"
-        class="card flex flex-col items-start justify-center gap-3 border-dashed bg-sand-100 p-6 no-underline hover:shadow-card-hover"
-      >
-        <span class="font-serif text-xl font-semibold text-brand-800">Ver todos los servicios</span>
-        <span class="text-sm text-ink-soft">Índice completo con el detalle de cada trabajo.</span>
-        <span class="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700">
-          Ir al índice
-          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h12M11 5l5 5-5 5" />
-          </svg>
-        </span>
+  <section class="container-rm py-20 md:py-24" aria-labelledby="servicios-home">
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Áreas de trabajo</p>
+        <h2 class="text-h2">Servicios de auditoría y aseguramiento</h2>
+        <p class="mt-3 text-lg text-ink-soft">
+          Para cada encargo le decimos qué es, cuándo lo necesita —el disparador legal o de negocio—
+          y qué entregable recibe. Sin promesas vacías.
+        </p>
+      </div>
+      <a href="/servicios" class="hidden shrink-0 items-center gap-2 font-semibold text-brand-700 no-underline hover:underline md:inline-flex">
+        Índice completo
+        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h12M11 5l5 5-5 5" />
+        </svg>
       </a>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {SERVICES.map((s, i) => <ServiceCard service={s} number={i + 1} />)}
     </div>
   </section>
 
-  <!-- Valores / por qué nosotros -->
-  <section class="bg-white border-y border-sand-200" aria-labelledby="valores-home">
-    <div class="container-rm py-20">
-      <div class="max-w-2xl">
-        <div class="accent-rule mb-4"></div>
-        <h2 id="valores-home" class="text-h2">Por qué confiar en nosotros</h2>
-        <p class="mt-3 text-lg text-ink-soft">
-          Un despacho que entiende que, en un sector regulado, lo importante no es parecer moderno,
-          sino ser fiable.
+  <!-- Método / por qué nosotros -->
+  <section class="border-y border-sand-200 bg-white" aria-labelledby="metodo-home">
+    <div class="container-rm grid gap-12 py-20 md:py-24 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2 id="metodo-home" class="text-h2">Lo importante no es parecer moderno, sino ser fiable</h2>
+        <p class="mt-4 text-ink-soft">
+          En un sector regulado, la confianza se construye con independencia y método. Así entendemos
+          el oficio.
         </p>
       </div>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {
-          valores.map((v) => (
-            <div class="rounded-card border border-sand-200 bg-sand-50 p-6">
-              <span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
-                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d={v.icon} />
-                </svg>
-              </span>
-              <h3 class="mt-4 font-serif text-lg font-semibold text-ink">{v.title}</h3>
-              <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{v.text}</p>
-            </div>
-          ))
-        }
+      <div class="lg:col-span-8">
+        <div class="grid gap-px overflow-hidden border border-sand-200 bg-sand-200 sm:grid-cols-2">
+          {
+            metodo.map((m) => (
+              <div class="bg-white p-7">
+                <h3 class="font-serif text-lg font-semibold text-ink">{m.title}</h3>
+                <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{m.text}</p>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Cifras -->
-  <section class="container-rm py-20" aria-label="Cifras del despacho">
-    <dl class="grid gap-8 text-center sm:grid-cols-2 lg:grid-cols-4">
+  <section class="container-rm py-16" aria-label="Cifras del despacho">
+    <dl class="grid divide-y divide-sand-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
       {
         STATS.map((s) => (
-          <div class="border-t-2 border-accent-300 pt-5">
+          <div class="px-0 py-6 sm:px-8 sm:py-2 sm:first:pl-0">
             <dt class="sr-only">{s.label}</dt>
             <dd>
-              <span class="block font-serif text-4xl font-bold text-brand-800">{s.value}</span>
-              <span class="mt-2 block font-medium text-ink">{s.label}</span>
+              <span class="font-serif text-4xl font-semibold text-brand-800">{s.value}</span>
+              <span class="mt-1 block text-[0.95rem] font-medium text-ink">{s.label}</span>
               <span class="mt-1 block text-sm text-ink-muted">{s.detail}</span>
             </dd>
           </div>
