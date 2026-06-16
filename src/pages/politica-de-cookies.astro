@@ -1,0 +1,80 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+
+<LegalLayout
+  title="Política de cookies | Ruiz & Marín"
+  description="Política de cookies de Ruiz & Marín: qué almacenamiento utilizamos, los servicios de terceros que solo se cargan con su consentimiento y cómo gestionarlos."
+  heading="Política de cookies"
+  path="/politica-de-cookies"
+  lastUpdated="17 de junio de 2026"
+>
+  <p>
+    Este sitio web utiliza el mínimo almacenamiento necesario para funcionar y respeta su decisión
+    sobre los servicios de terceros. No empleamos cookies de analítica ni de publicidad, y no cargamos
+    ningún recurso externo hasta que usted lo autoriza.
+  </p>
+
+  <h2>1. ¿Qué es una cookie?</h2>
+  <p>
+    Una cookie es un pequeño archivo de texto que un sitio web almacena en su navegador. De forma
+    análoga, las tecnologías de almacenamiento local (<code>localStorage</code>) permiten guardar
+    información en su dispositivo. Sirven, entre otras cosas, para recordar preferencias o el estado
+    de una sesión.
+  </p>
+
+  <h2>2. Almacenamiento que utilizamos</h2>
+  <table>
+    <thead>
+      <tr><th>Nombre</th><th>Tipo</th><th>Finalidad</th><th>Duración</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>rm-consent</code></td>
+        <td>Técnica / necesaria (localStorage)</td>
+        <td>Recordar su decisión sobre el consentimiento de cookies y la carga del mapa.</td>
+        <td>Persistente (hasta que la borre)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Este almacenamiento es estrictamente necesario para respetar su elección y no requiere
+    consentimiento conforme a la normativa.
+  </p>
+
+  <h2>3. Servicios de terceros (solo con su consentimiento)</h2>
+  <p>
+    En la página de contacto mostramos un mapa de ubicación a través de <strong>Google Maps</strong>
+    (Google Ireland Limited). Este servicio <strong>no se carga</strong> de forma predeterminada:
+    solo se activa si usted lo autoriza, ya sea desde el banner de cookies o desde el botón «Cargar
+    mapa» del propio bloque. Al activarlo, Google puede instalar cookies y tratar datos (como su
+    dirección IP) conforme a su propia política de privacidad.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Proveedor</th><th>Finalidad</th><th>Activación</th><th>Más información</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Google Maps</td>
+        <td>Mostrar el mapa de ubicación del despacho.</td>
+        <td>Solo previo consentimiento del usuario.</td>
+        <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de Google</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Cómo gestionar su consentimiento</h2>
+  <p>
+    Puede aceptar, rechazar o configurar el uso de servicios de terceros en cualquier momento. Para
+    revisar o cambiar su decisión, abra el panel de configuración:
+  </p>
+  <p>
+    <button type="button" data-cookie-settings class="btn btn-secondary">Configurar cookies</button>
+  </p>
+  <p>
+    Además, puede eliminar o bloquear el almacenamiento desde la configuración de su navegador
+    (Chrome, Firefox, Safari, Edge…). Tenga en cuenta que, si borra el dato <code>rm-consent</code>,
+    el banner volverá a mostrarse en su próxima visita.
+  </p>
+</LegalLayout>

@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaSection from '../../components/CtaSection.astro';
+
+const title = 'Actualidad | Ruiz & Marín, auditores de cuentas';
+const description =
+  'Análisis y novedades sobre auditoría de cuentas, obligaciones legales, subvenciones y deducciones fiscales, explicados con claridad por Ruiz & Marín.';
+
+const posts = (await getCollection('blog', ({ data }) => data.draft !== true)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={[{ name: 'Actualidad', path: '/actualidad' }]} />
+
+  <section class="container-rm py-14 md:py-20">
+    <div class="max-w-3xl">
+      <div class="accent-rule mb-4"></div>
+      <h1 class="text-h1">Actualidad</h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-soft">
+        Novedades normativas y artículos sobre auditoría, subvenciones y fiscalidad, redactados con
+        el mismo rigor con el que trabajamos.
+      </p>
+    </div>
+
+    {
+      posts.length === 0 ? (
+        <p class="mt-12 rounded-card border border-dashed border-sand-300 bg-sand-100 p-8 text-center text-ink-soft">
+          Aún no hemos publicado artículos. Vuelva pronto.
+        </p>
+      ) : (
+        <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <article class="card flex flex-col overflow-hidden">
+              {post.data.cover && (
+                <img
+                  src={post.data.cover}
+                  alt={post.data.coverAlt ?? post.data.title}
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="360"
+                  class="aspect-[16/9] w-full object-cover"
+                />
+              )}
+              <div class="flex flex-1 flex-col p-6">
+                <time datetime={post.data.pubDate.toISOString()} class="text-sm text-ink-muted">
+                  {fmt(post.data.pubDate)}
+                </time>
+                <h2 class="mt-2 font-serif text-xl font-semibold text-ink">
+                  <a href={`/actualidad/${post.id}`} class="no-underline hover:text-brand-800">
+                    {post.data.title}
+                  </a>
+                </h2>
+                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
+                  {post.data.description}
+                </p>
+                <a
+                  href={`/actualidad/${post.id}`}
+                  class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700"
+                >
+                  Leer artículo
+                  <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h12M11 5l5 5-5 5" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )
+    }
+  </section>
+
+  <CtaSection />
+</BaseLayout>

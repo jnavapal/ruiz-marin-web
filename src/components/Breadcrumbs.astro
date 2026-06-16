@@ -1,0 +1,41 @@
+---
+import JsonLd from './JsonLd.astro';
+import { breadcrumbSchema, graph } from '../lib/schema';
+
+interface Crumb {
+  name: string;
+  path: string;
+}
+interface Props {
+  items: Crumb[];
+}
+const { items } = Astro.props;
+// Siempre anteponemos Inicio.
+const crumbs: Crumb[] = [{ name: 'Inicio', path: '/' }, ...items];
+---
+
+<nav aria-label="Migas de pan" class="border-b border-sand-200 bg-sand-100/60">
+  <ol class="container-rm flex flex-wrap items-center gap-x-2 gap-y-1 py-3 text-sm text-ink-muted">
+    {
+      crumbs.map((c, i) => {
+        const last = i === crumbs.length - 1;
+        return (
+          <li class="flex items-center gap-2">
+            {last ? (
+              <span aria-current="page" class="font-medium text-ink-soft">{c.name}</span>
+            ) : (
+              <a href={c.path} class="no-underline hover:underline">{c.name}</a>
+            )}
+            {!last && (
+              <svg class="h-3.5 w-3.5 text-sand-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M7.5 4.5 13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
+
+<JsonLd schema={graph(breadcrumbSchema(crumbs))} />

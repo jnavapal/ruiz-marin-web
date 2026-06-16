@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { SERVICES } from '../../data/site';
+
+const title = 'Servicios de auditoría de cuentas | Ruiz & Marín (ROAC, Burgos)';
+const description =
+  'Servicios de auditoría y aseguramiento de Ruiz & Marín: auditoría de cuentas anuales, procedimientos acordados, deducciones fiscales, justificación de subvenciones (I+D, FEDER, CDTI) y PMP, e informes especiales.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={[{ name: 'Servicios', path: '/servicios' }]} />
+
+  <section class="container-rm py-14 md:py-20">
+    <div class="max-w-3xl">
+      <div class="accent-rule mb-4"></div>
+      <h1 class="text-h1">Servicios de auditoría y aseguramiento</h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-soft">
+        Trabajamos con un enfoque claro: para cada servicio le explicamos <strong>qué es</strong>,
+        <strong>cuándo lo necesita</strong> —el disparador legal o de negocio— y
+        <strong>qué entregable</strong> recibe. Todos nuestros informes los firma un auditor
+        inscrito en el ROAC.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {SERVICES.map((s, i) => <ServiceCard service={s} number={i + 1} />)}
+    </div>
+
+    <div class="mt-12 rounded-card border border-sand-200 bg-sand-100 p-6 md:p-8">
+      <h2 class="font-serif text-xl font-semibold text-ink">¿No sabe qué servicio necesita?</h2>
+      <p class="mt-2 max-w-2xl text-ink-soft">
+        Cuéntenos su situación y le orientamos sin compromiso: si la auditoría es obligatoria, si su
+        subvención exige informe de auditor o qué soporte necesita para una deducción.
+      </p>
+      <a href="/contacto" class="btn btn-primary mt-5">Hablar con un auditor</a>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

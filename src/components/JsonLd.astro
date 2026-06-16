@@ -1,0 +1,15 @@
+---
+/**
+ * Inyecta datos estructurados (JSON-LD) de forma segura.
+ * Uso: <JsonLd schema={ ... } /> o <JsonLd schema={[ ... ]} />
+ */
+interface Props {
+  schema: Record<string, unknown> | Record<string, unknown>[];
+}
+const { schema } = Astro.props;
+
+// Escapa '<' para evitar que un "</script>" en los datos rompa el documento.
+const json = JSON.stringify(schema).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" set:html={json} is:inline />

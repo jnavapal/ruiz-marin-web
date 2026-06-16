@@ -1,0 +1,95 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { SITE } from '../data/site';
+
+const titular = SITE.legalName.replace(/[{}]/g, '');
+const nif = SITE.fiscal.nif.replace(/[{}]/g, '');
+const roac = SITE.fiscal.roacFirma.replace(/[{}]/g, '');
+const registro = SITE.fiscal.registroMercantil.replace(/[{}]/g, '');
+const direccion = `${SITE.address.street.replace(/[{}]/g, '')}, ${SITE.address.postalCode.replace(/[{}]/g, '')} ${SITE.address.city} (${SITE.address.region})`;
+---
+
+<LegalLayout
+  title="Aviso legal | Ruiz & Marín"
+  description="Aviso legal y condiciones de uso del sitio web de Ruiz & Marín, auditores de cuentas, conforme a la LSSI-CE."
+  heading="Aviso legal"
+  path="/aviso-legal"
+  lastUpdated="17 de junio de 2026"
+>
+  <p>
+    El presente aviso legal regula el acceso y la utilización del sitio web
+    <strong>{SITE.url.replace('https://', '')}</strong> (en adelante, el «Sitio Web»), titularidad de
+    {titular}, en cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la
+    Información y de Comercio Electrónico (LSSI-CE).
+  </p>
+
+  <h2>1. Datos identificativos del titular</h2>
+  <ul>
+    <li><strong>Titular:</strong> {titular}</li>
+    <li><strong>NIF:</strong> {nif}</li>
+    <li><strong>Domicilio:</strong> {direccion}</li>
+    <li><strong>Correo electrónico:</strong> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+    <li><strong>Teléfono:</strong> <a href={`tel:${SITE.phoneHref}`}>{SITE.phoneDisplay}</a></li>
+    <li><strong>Datos registrales:</strong> {registro}</li>
+    <li>
+      <strong>Inscripción profesional:</strong> Auditor de cuentas inscrito en el Registro Oficial de
+      Auditores de Cuentas (ROAC), {roac}, dependiente del Instituto de Contabilidad y Auditoría de
+      Cuentas (ICAC).
+    </li>
+  </ul>
+
+  <h2>2. Objeto</h2>
+  <p>
+    El Sitio Web tiene por objeto ofrecer información sobre los servicios profesionales de auditoría
+    de cuentas y aseguramiento prestados por el titular. El acceso al Sitio Web es gratuito, salvo el
+    coste de la conexión a través de la red de telecomunicaciones del usuario.
+  </p>
+
+  <h2>3. Condiciones de uso</h2>
+  <p>
+    El usuario se compromete a utilizar el Sitio Web y sus contenidos conforme a la ley, a este aviso
+    legal, a la buena fe y al orden público. Queda prohibido el uso del Sitio Web con fines ilícitos o
+    lesivos para el titular o cualquier tercero, o que de cualquier forma puedan causar perjuicio o
+    impedir el normal funcionamiento del Sitio Web.
+  </p>
+
+  <h2>4. Propiedad intelectual e industrial</h2>
+  <p>
+    Todos los contenidos del Sitio Web (textos, fotografías, gráficos, imágenes, iconos, tecnología,
+    software, diseño gráfico y códigos fuente) constituyen una obra cuya propiedad pertenece al
+    titular, sin que puedan entenderse cedidos al usuario ninguno de los derechos de explotación
+    sobre los mismos más allá de lo estrictamente necesario para el correcto uso del Sitio Web. Las
+    marcas, nombres comerciales o signos distintivos son titularidad del titular o de terceros, sin
+    que el acceso al Sitio Web pueda atribuir ningún derecho sobre ellos.
+  </p>
+
+  <h2>5. Exclusión de responsabilidad</h2>
+  <p>
+    El titular no se hace responsable de los daños y perjuicios de cualquier naturaleza que pudieran
+    derivarse de la disponibilidad y continuidad técnica del funcionamiento del Sitio Web. El titular
+    realiza sus mejores esfuerzos para que la información del Sitio Web sea exacta y esté actualizada;
+    no obstante, la información de carácter general aquí contenida no constituye asesoramiento
+    profesional, que requiere el análisis individualizado de cada caso.
+  </p>
+
+  <h2>6. Enlaces a terceros</h2>
+  <p>
+    El Sitio Web puede contener enlaces a sitios de terceros. El titular no asume responsabilidad
+    alguna sobre los contenidos, informaciones o servicios que pudieran aparecer en dichos sitios,
+    que tienen carácter exclusivamente informativo.
+  </p>
+
+  <h2>7. Protección de datos</h2>
+  <p>
+    El tratamiento de los datos personales que el usuario facilite a través del Sitio Web se rige por
+    la <a href="/politica-de-privacidad">Política de privacidad</a> y la
+    <a href="/politica-de-cookies">Política de cookies</a>.
+  </p>
+
+  <h2>8. Legislación aplicable y jurisdicción</h2>
+  <p>
+    El presente aviso legal se rige por la legislación española. Para la resolución de cualquier
+    controversia que pudiera derivarse del acceso o uso del Sitio Web, las partes se someten a los
+    juzgados y tribunales del domicilio del usuario cuando este tenga la condición de consumidor.
+  </p>
+</LegalLayout>

@@ -1,0 +1,110 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { SITE } from '../data/site';
+
+const titular = SITE.legalName.replace(/[{}]/g, '');
+const nif = SITE.fiscal.nif.replace(/[{}]/g, '');
+const direccion = `${SITE.address.street.replace(/[{}]/g, '')}, ${SITE.address.postalCode.replace(/[{}]/g, '')} ${SITE.address.city} (${SITE.address.region})`;
+---
+
+<LegalLayout
+  title="Política de privacidad | Ruiz & Marín"
+  description="Política de privacidad de Ruiz & Marín conforme al RGPD y la LOPDGDD: responsable, finalidad, base jurídica, conservación, derechos y secreto profesional del auditor."
+  heading="Política de privacidad"
+  path="/politica-de-privacidad"
+  lastUpdated="17 de junio de 2026"
+>
+  <p>
+    En {titular} tratamos la información que nos facilita con el fin de prestar nuestros servicios y
+    atender sus consultas, conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018, de
+    Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
+  </p>
+
+  <h2>1. Responsable del tratamiento</h2>
+  <ul>
+    <li><strong>Responsable:</strong> {titular}</li>
+    <li><strong>NIF:</strong> {nif}</li>
+    <li><strong>Domicilio:</strong> {direccion}</li>
+    <li><strong>Correo electrónico:</strong> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+    <li><strong>Teléfono:</strong> <a href={`tel:${SITE.phoneHref}`}>{SITE.phoneDisplay}</a></li>
+  </ul>
+
+  <h2>2. Finalidad del tratamiento</h2>
+  <p>Tratamos sus datos personales con las siguientes finalidades:</p>
+  <ul>
+    <li>Atender las consultas y solicitudes de información o presupuesto remitidas a través del formulario de contacto, el correo electrónico o el teléfono.</li>
+    <li>Gestionar la relación profesional y la prestación de los servicios de auditoría y aseguramiento contratados.</li>
+    <li>Cumplir las obligaciones legales, contables y fiscales aplicables a nuestra actividad.</li>
+  </ul>
+  <p>No se elaboran perfiles ni se toman decisiones automatizadas con sus datos.</p>
+
+  <h2>3. Base jurídica</h2>
+  <ul>
+    <li><strong>Consentimiento</strong> del interesado al remitir una consulta a través del formulario (art. 6.1.a RGPD).</li>
+    <li><strong>Ejecución de un contrato</strong> o de medidas precontractuales cuando exista o vaya a existir relación de servicios (art. 6.1.b RGPD).</li>
+    <li><strong>Cumplimiento de obligaciones legales</strong> aplicables al responsable (art. 6.1.c RGPD).</li>
+    <li><strong>Interés legítimo</strong> en responder a las comunicaciones que usted nos dirige (art. 6.1.f RGPD).</li>
+  </ul>
+
+  <h2>4. Plazo de conservación</h2>
+  <p>
+    Los datos facilitados a través del formulario se conservarán durante el tiempo necesario para
+    atender su solicitud y, en su caso, mientras se mantenga la relación profesional. Una vez
+    finalizada, se conservarán debidamente bloqueados durante los plazos legalmente exigibles para
+    atender posibles responsabilidades (en particular, las derivadas de la normativa mercantil,
+    fiscal y de auditoría de cuentas), tras lo cual se procederá a su supresión.
+  </p>
+
+  <h2>5. Destinatarios</h2>
+  <p>
+    Con carácter general, no se cederán datos a terceros, salvo obligación legal. Podrán acceder a sus
+    datos los proveedores de servicios que actúan como encargados del tratamiento (por ejemplo,
+    servicios de alojamiento web o de gestión del formulario), con los que se suscriben los
+    correspondientes contratos conforme al art. 28 RGPD. El formulario de contacto se gestiona a
+    través de un proveedor de envío de formularios; sus datos se transmiten cifrados con esa única
+    finalidad.
+  </p>
+
+  <h2>6. Secreto profesional del auditor</h2>
+  <p>
+    La información a la que accedemos en el ejercicio de la actividad de auditoría de cuentas está
+    sujeta al <strong>deber de secreto</strong> establecido en la Ley 22/2015, de Auditoría de
+    Cuentas, y su normativa de desarrollo. Toda la información de nuestros clientes se trata con
+    estricta confidencialidad y no se difunde ni utiliza para fines distintos de los propios del
+    encargo, sin perjuicio de las obligaciones de información frente al ICAC y demás autoridades
+    competentes previstas legalmente.
+  </p>
+
+  <h2>7. Derechos de las personas interesadas</h2>
+  <p>Usted puede ejercer, en cualquier momento y de forma gratuita, los siguientes derechos:</p>
+  <ul>
+    <li><strong>Acceso:</strong> conocer qué datos suyos tratamos.</li>
+    <li><strong>Rectificación:</strong> solicitar la corrección de datos inexactos.</li>
+    <li><strong>Supresión:</strong> solicitar la eliminación de sus datos («derecho al olvido»).</li>
+    <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos.</li>
+    <li><strong>Limitación:</strong> solicitar la limitación del tratamiento en los casos previstos.</li>
+    <li><strong>Portabilidad:</strong> recibir sus datos en un formato estructurado y de uso común.</li>
+    <li><strong>Retirada del consentimiento</strong> prestado, sin que ello afecte a la licitud del tratamiento previo.</li>
+  </ul>
+  <p>
+    Para ejercerlos, escriba a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o a la dirección
+    postal indicada, identificándose adecuadamente e indicando el derecho que desea ejercer. Si
+    considera que el tratamiento no se ajusta a la normativa, tiene derecho a presentar una
+    reclamación ante la <strong>Agencia Española de Protección de Datos</strong>
+    (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).
+  </p>
+
+  <h2>8. Seguridad</h2>
+  <p>
+    Aplicamos las medidas técnicas y organizativas apropiadas para garantizar un nivel de seguridad
+    adecuado al riesgo, evitando la pérdida, el mal uso, la alteración y el acceso no autorizado a los
+    datos personales.
+  </p>
+
+  <h2>9. Veracidad de los datos</h2>
+  <p>
+    El usuario garantiza que los datos facilitados son veraces y se responsabiliza de comunicar
+    cualquier modificación de los mismos. El usuario es el único responsable de cualquier daño
+    derivado de la introducción de datos falsos, inexactos o de terceros.
+  </p>
+</LegalLayout>

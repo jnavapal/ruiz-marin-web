@@ -1,0 +1,46 @@
+---
+/**
+ * Bloque de preguntas frecuentes. Acordeón accesible con <details>/<summary>
+ * (navegable por teclado, sin JavaScript). El contenido de cada respuesta admite
+ * HTML simple (negritas, listas, tablas) porque lo redactamos nosotros.
+ *
+ * Empareja con faqSchema() para emitir FAQPage (JSON-LD) en la misma página.
+ */
+interface FaqItem {
+  q: string;
+  a: string;
+}
+interface Props {
+  faqs: FaqItem[];
+  title?: string;
+  id?: string;
+}
+const { faqs, title = 'Preguntas frecuentes', id = 'faq' } = Astro.props;
+---
+
+<section aria-labelledby={`${id}-title`} class="mt-16">
+  <div class="accent-rule mb-4"></div>
+  <h2 id={`${id}-title`} class="text-h2">{title}</h2>
+  <div class="mt-6 divide-y divide-sand-200 border-y border-sand-200">
+    {
+      faqs.map((f, i) => (
+        <details class="group py-1" name={id}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-left font-serif text-lg font-semibold text-ink marker:hidden [&::-webkit-details-marker]:hidden">
+            <span>{f.q}</span>
+            <svg
+              class="h-5 w-5 shrink-0 text-brand-600 transition-transform group-open:rotate-45"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" d="M10 4.5v11M4.5 10h11" />
+            </svg>
+          </summary>
+          <div class="prose-rm max-w-prose pb-5 pr-8 text-[1rem]" set:html={f.a} />
+        </details>
+      ))
+    }
+  </div>
+</section>

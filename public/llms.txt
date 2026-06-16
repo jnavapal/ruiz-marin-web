@@ -1,0 +1,42 @@
+# Ruiz & Marín — Auditores de cuentas (ROAC)
+
+> Despacho de auditoría de cuentas con sede en Burgos (España) e inscrito en el Registro Oficial de Auditores de Cuentas (ROAC). Presta servicios de auditoría de cuentas anuales (obligatoria y voluntaria), procedimientos acordados, acreditación de deducciones fiscales, justificación de subvenciones de I+D, FEDER y CDTI, acreditación del periodo medio de pago a proveedores (PMP) e informes especiales, a pymes y profesionales de toda España.
+
+## Organización
+
+- **Nombre:** Ruiz & Marín
+- **Actividad:** Auditoría de cuentas y servicios de aseguramiento
+- **Sede:** Burgos, Castilla y León (España)
+- **Ámbito de servicio:** Toda España
+- **Inscripción:** Registro Oficial de Auditores de Cuentas (ROAC) — nº {{Nº ROAC}}
+- **Valores:** rigor técnico, independencia y confidencialidad (secreto profesional del auditor)
+- **Experiencia:** socios auditores con más de 9 años de experiencia en Big Four y empresa privada
+
+## Servicios
+
+- [Auditoría de cuentas anuales (obligatoria y voluntaria)](https://www.ruizmarinauditores.com/servicios/cuentas-anuales): revisión de las cuentas anuales por auditor inscrito en el ROAC, conforme a las NIA-ES, con emisión de informe de auditoría. Obligatoria al superar dos de tres umbrales (activo > 4.000.000 €, cifra de negocio > 8.000.000 €, > 50 empleados) durante dos ejercicios, entre otros supuestos.
+- [Informes de procedimientos acordados](https://www.ruizmarinauditores.com/servicios/procedimientos-acordados): trabajos (ISRS 4400) sobre estados financieros o transacciones concretas, con informe de hallazgos de hechos, sin opinión.
+- [Acreditación de deducciones fiscales](https://www.ruizmarinauditores.com/servicios/deducciones-fiscales): verificación de las bases de deducción (especialmente I+D+i) y soporte documental frente a la Agencia Tributaria.
+- [Revisión justificativa de subvenciones (I+D, FEDER, CDTI) y PMP](https://www.ruizmarinauditores.com/servicios/justificacion-de-subvenciones): informe de auditor sobre la cuenta justificativa (Orden EHA/1434/2007) y acreditación del periodo medio de pago a proveedores.
+- [Otros trabajos y servicios](https://www.ruizmarinauditores.com/servicios/otros-trabajos-y-servicios): informes especiales mercantiles, due diligence, valoraciones y periciales económicas.
+
+## Certificaciones y pertenencias
+
+- Registro Oficial de Auditores de Cuentas (ROAC) — ICAC
+- Instituto de Censores Jurados de Cuentas de España (ICJCE)
+- Colegio Oficial de Economistas
+- Asociación Española de Contabilidad y Administración de Empresas (AECA)
+
+## Contacto
+
+- **Email:** info@ruizmarinauditores.com
+- **Teléfono:** +34 669 351 525
+- **Web:** https://www.ruizmarinauditores.com
+- [Página de contacto](https://www.ruizmarinauditores.com/contacto)
+- [Quiénes somos](https://www.ruizmarinauditores.com/quienes-somos)
+
+## Legal
+
+- [Aviso legal](https://www.ruizmarinauditores.com/aviso-legal)
+- [Política de privacidad](https://www.ruizmarinauditores.com/politica-de-privacidad)
+- [Política de cookies](https://www.ruizmarinauditores.com/politica-de-cookies)

@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { SITE } from '../../data/site';
+import { articleSchema, graph } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => data.draft !== true);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const canonical = new URL(`/actualidad/${post.id}`, SITE.url).href;
+const image = post.data.cover ? new URL(post.data.cover, SITE.url).href : `${SITE.url}/og-image.png`;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const schema = graph(
+  articleSchema({
+    title: post.data.title,
+    description: post.data.description,
+    url: canonical,
+    image,
+    datePublished: post.data.pubDate.toISOString(),
+    dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+    author: post.data.author,
+  })
+);
+---
+
+<BaseLayout
+  title={`${post.data.title} | Ruiz & Marín`}
+  description={post.data.description}
+  ogType="article"
+  image={post.data.cover ?? '/og-image.png'}
+  publishedTime={post.data.pubDate.toISOString()}
+  modifiedTime={(post.data.updatedDate ?? post.data.pubDate).toISOString()}
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { name: 'Actualidad', path: '/actualidad' },
+      { name: post.data.title, path: `/actualidad/${post.id}` },
+    ]}
+  />
+
+  <article class="container-rm py-14 md:py-20">
+    <div class="mx-auto max-w-prose">
+      <header>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-muted">
+          <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{post.data.author}</span>
+        </div>
+        <h1 class="mt-3 text-h1">{post.data.title}</h1>
+        <p class="mt-4 text-lg leading-relaxed text-ink-soft">{post.data.description}</p>
+        {
+          post.data.tags.length > 0 && (
+            <ul class="mt-5 flex flex-wrap gap-2">
+              {post.data.tags.map((t) => (
+                <li class="rounded-full bg-sand-100 px-3 py-1 text-xs font-medium text-ink-muted">#{t}</li>
+              ))}
+            </ul>
+          )
+        }
+      </header>
+
+      {
+        post.data.cover && (
+          <img
+            src={post.data.cover}
+            alt={post.data.coverAlt ?? post.data.title}
+            width="1280"
+            height="720"
+            class="mt-8 aspect-[16/9] w-full rounded-card object-cover"
+          />
+        )
+      }
+
+      <div class="prose-rm mt-10">
+        <Content />
+      </div>
+
+      <div class="mt-12 border-t border-sand-200 pt-6">
+        <a href="/actualidad" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 no-underline hover:underline">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 10H4m5 5-5-5 5-5" />
+          </svg>
+          Volver a Actualidad
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <CtaSection />
+</BaseLayout>

@@ -1,0 +1,143 @@
+---
+/**
+ * Banner de cookies propio, ligero y conforme con RGPD/LSSI-CE.
+ * - Bloquea por defecto cualquier carga de terceros (el mapa) hasta el consentimiento.
+ * - Opciones reales: Aceptar / Rechazar / Configurar (granular).
+ * - Guarda la decisión en localStorage y emite el evento `rm:consent` para que los
+ *   componentes que dependen de terceros (p. ej. el mapa) reaccionen.
+ * - El enlace "Configurar cookies" del pie reabre el panel (atributo data-cookie-settings).
+ */
+---
+
+<div
+  id="cookie-banner"
+  class="fixed inset-x-0 bottom-0 z-50 hidden border-t border-sand-300 bg-white/98 shadow-[0_-8px_30px_-12px_rgba(27,36,48,0.25)] backdrop-blur"
+  role="region"
+  aria-label="Aviso de cookies"
+>
+  <div class="container-rm flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between">
+    <p class="max-w-3xl text-sm leading-relaxed text-ink-soft">
+      Utilizamos cookies propias necesarias para el funcionamiento del sitio. Solo cargamos
+      servicios de terceros (como el mapa de ubicación) si das tu consentimiento. Puedes
+      aceptarlas, rechazarlas o configurarlas. Más información en nuestra
+      <a href="/politica-de-cookies" class="font-medium underline">política de cookies</a>.
+    </p>
+    <div class="flex shrink-0 flex-wrap items-center gap-2">
+      <button type="button" data-cookie-reject class="btn btn-secondary py-2.5 text-sm">Rechazar</button>
+      <button type="button" data-cookie-config class="btn btn-ghost py-2.5 text-sm">Configurar</button>
+      <button type="button" data-cookie-accept class="btn btn-primary py-2.5 text-sm">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<dialog
+  id="cookie-dialog"
+  class="w-[min(92vw,32rem)] rounded-card border border-sand-200 p-0 shadow-card-hover backdrop:bg-ink/40"
+  aria-labelledby="cookie-dialog-title"
+>
+  <form method="dialog" class="p-6">
+    <h2 id="cookie-dialog-title" class="font-serif text-xl font-semibold text-ink">Configuración de cookies</h2>
+    <p class="mt-2 text-sm text-ink-muted">
+      Activa o desactiva las categorías. Las cookies necesarias no pueden desactivarse porque
+      el sitio no funcionaría correctamente sin ellas.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="flex items-start justify-between gap-4 rounded-md border border-sand-200 bg-sand-50 p-4">
+        <div>
+          <p class="font-semibold text-ink">Necesarias</p>
+          <p class="mt-1 text-sm text-ink-muted">Imprescindibles para la navegación y la seguridad. Siempre activas.</p>
+        </div>
+        <input type="checkbox" checked disabled class="mt-1 h-5 w-5 accent-brand-700" aria-label="Cookies necesarias (siempre activas)" />
+      </div>
+
+      <div class="flex items-start justify-between gap-4 rounded-md border border-sand-200 p-4">
+        <div>
+          <label for="consent-map" class="font-semibold text-ink">Mapa y contenido externo</label>
+          <p class="mt-1 text-sm text-ink-muted">Permite cargar el mapa de ubicación (Google Maps). Implica conexión con un tercero.</p>
+        </div>
+        <input id="consent-map" name="map" type="checkbox" class="mt-1 h-5 w-5 accent-brand-700" />
+      </div>
+    </div>
+
+    <div class="mt-6 flex flex-wrap justify-end gap-2">
+      <button type="submit" value="reject" class="btn btn-secondary py-2.5 text-sm">Rechazar todo</button>
+      <button type="submit" value="save" class="btn btn-ghost py-2.5 text-sm">Guardar selección</button>
+      <button type="submit" value="accept" class="btn btn-primary py-2.5 text-sm">Aceptar todo</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  const STORAGE_KEY = 'rm-consent';
+  const banner = document.getElementById('cookie-banner');
+  const dialog = document.getElementById('cookie-dialog') as HTMLDialogElement | null;
+  const mapCheckbox = document.getElementById('consent-map') as HTMLInputElement | null;
+
+  type Consent = { map: boolean; ts: string };
+
+  function read(): Consent | null {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? (JSON.parse(raw) as Consent) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function emit(consent: Consent) {
+    document.dispatchEvent(new CustomEvent('rm:consent', { detail: consent }));
+  }
+
+  function save(consent: Consent) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+    } catch {
+      /* almacenamiento no disponible: continuamos sin persistir */
+    }
+    banner?.classList.add('hidden');
+    emit(consent);
+  }
+
+  function showBanner() {
+    banner?.classList.remove('hidden');
+  }
+
+  function openDialog() {
+    if (!dialog) return;
+    const current = read();
+    if (mapCheckbox) mapCheckbox.checked = current?.map ?? false;
+    dialog.showModal();
+  }
+
+  // Botones del banner
+  banner?.querySelector('[data-cookie-accept]')?.addEventListener('click', () =>
+    save({ map: true, ts: new Date().toISOString() })
+  );
+  banner?.querySelector('[data-cookie-reject]')?.addEventListener('click', () =>
+    save({ map: false, ts: new Date().toISOString() })
+  );
+  banner?.querySelector('[data-cookie-config]')?.addEventListener('click', openDialog);
+
+  // Cierre del modal según el botón pulsado
+  dialog?.addEventListener('close', () => {
+    const choice = dialog.returnValue;
+    if (choice === 'accept') save({ map: true, ts: new Date().toISOString() });
+    else if (choice === 'reject') save({ map: false, ts: new Date().toISOString() });
+    else if (choice === 'save')
+      save({ map: !!mapCheckbox?.checked, ts: new Date().toISOString() });
+  });
+
+  // Reapertura desde el pie ("Configurar cookies")
+  document.querySelectorAll('[data-cookie-settings]').forEach((el) =>
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      openDialog();
+    })
+  );
+
+  // Estado inicial
+  const stored = read();
+  if (stored) emit(stored);
+  else showBanner();
+</script>

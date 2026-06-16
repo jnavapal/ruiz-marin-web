@@ -1,0 +1,90 @@
+---
+import Logo from './Logo.astro';
+import { SITE, SERVICES, CREDENTIALS } from '../data/site';
+const year = 2026;
+---
+
+<footer class="mt-24 bg-brand-900 text-sand-200">
+  <div class="container-rm grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+    <!-- Identidad + NAP -->
+    <div class="lg:col-span-1">
+      <Logo variant="light" />
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-sand-200/80">
+        Despacho de auditoría de cuentas inscrito en el ROAC. Rigor técnico, independencia y
+        confidencialidad para pymes y profesionales.
+      </p>
+      <address class="mt-5 space-y-1 text-sm not-italic text-sand-200/90">
+        <p>{SITE.address.street}, {SITE.address.city}</p>
+        <p>
+          <a href={`tel:${SITE.phoneHref}`} class="text-sand-200 underline-offset-2 hover:text-white">{SITE.phoneDisplay}</a>
+        </p>
+        <p>
+          <a href={`mailto:${SITE.email}`} class="text-sand-200 underline-offset-2 hover:text-white">{SITE.email}</a>
+        </p>
+      </address>
+    </div>
+
+    <!-- Servicios -->
+    <nav aria-label="Servicios" class="text-sm">
+      <h2 class="font-serif text-base font-semibold text-white">Servicios</h2>
+      <ul class="mt-4 space-y-2">
+        {
+          SERVICES.map((s) => (
+            <li>
+              <a href={`/servicios/${s.slug}`} class="text-sand-200/85 no-underline hover:text-white hover:underline">
+                {s.navTitle}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Empresa -->
+    <nav aria-label="Despacho" class="text-sm">
+      <h2 class="font-serif text-base font-semibold text-white">Despacho</h2>
+      <ul class="mt-4 space-y-2">
+        <li><a href="/quienes-somos" class="text-sand-200/85 no-underline hover:text-white hover:underline">Quiénes somos</a></li>
+        <li><a href="/servicios" class="text-sand-200/85 no-underline hover:text-white hover:underline">Todos los servicios</a></li>
+        <li><a href="/actualidad" class="text-sand-200/85 no-underline hover:text-white hover:underline">Actualidad</a></li>
+        <li><a href="/contacto" class="text-sand-200/85 no-underline hover:text-white hover:underline">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- Legal + credenciales -->
+    <div class="text-sm">
+      <h2 class="font-serif text-base font-semibold text-white">Información legal</h2>
+      <ul class="mt-4 space-y-2">
+        <li><a href="/aviso-legal" class="text-sand-200/85 no-underline hover:text-white hover:underline">Aviso legal</a></li>
+        <li><a href="/politica-de-privacidad" class="text-sand-200/85 no-underline hover:text-white hover:underline">Política de privacidad</a></li>
+        <li><a href="/politica-de-cookies" class="text-sand-200/85 no-underline hover:text-white hover:underline">Política de cookies</a></li>
+        <li>
+          <button type="button" data-cookie-settings class="text-sand-200/85 underline-offset-2 hover:text-white hover:underline">
+            Configurar cookies
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Banda de credenciales -->
+  <div class="border-t border-white/10">
+    <div class="container-rm flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-5 text-center text-xs text-sand-200/70">
+      {
+        CREDENTIALS.map((c) => (
+          <span title={c.name}>
+            <span class="font-semibold text-sand-200">{c.abbr}</span>
+          </span>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Línea legal -->
+  <div class="border-t border-white/10">
+    <div class="container-rm flex flex-col items-center justify-between gap-2 py-5 text-xs text-sand-200/70 sm:flex-row">
+      <p>© {year} {SITE.legalName.replace(/[{}]/g, '')}. Todos los derechos reservados.</p>
+      <p>Auditor de cuentas inscrito en el ROAC · {SITE.fiscal.roacFirma.replace(/[{}]/g, '')}</p>
+    </div>
+  </div>
+</footer>

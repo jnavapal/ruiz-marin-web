@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactForm from '../components/ContactForm.astro';
+import ConsentMap from '../components/ConsentMap.astro';
+import { SITE } from '../data/site';
+
+const title = 'Contacto | Ruiz & Marín, auditores en Burgos';
+const description =
+  'Contacte con Ruiz & Marín, auditores de cuentas en Burgos. Solicite presupuesto de auditoría, justificación de subvenciones o deducciones fiscales. Teléfono, email y formulario.';
+
+const fiscal = [
+  { label: 'Razón social', value: SITE.legalName.replace(/[{}]/g, '') },
+  { label: 'NIF', value: SITE.fiscal.nif.replace(/[{}]/g, '') },
+  { label: 'Inscripción ROAC', value: SITE.fiscal.roacFirma.replace(/[{}]/g, '') },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={[{ name: 'Contacto', path: '/contacto' }]} />
+
+  <section class="container-rm py-14 md:py-20">
+    <div class="max-w-3xl">
+      <div class="accent-rule mb-4"></div>
+      <h1 class="text-h1">Hablemos de su caso</h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-soft">
+        Cuéntenos qué necesita y le responderemos con la mayor brevedad. Le confirmaremos si el
+        trabajo es obligatorio, qué alcance tiene y qué documentación necesitará, con un presupuesto
+        cerrado y sin compromiso.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-12 lg:grid-cols-12">
+      <!-- Datos de contacto -->
+      <div class="lg:col-span-5">
+        <h2 class="font-serif text-xl font-semibold text-ink">Datos de contacto</h2>
+        <ul class="mt-5 space-y-5">
+          <li class="flex items-start gap-4">
+            <span class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700" aria-hidden="true">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
+            </span>
+            <div>
+              <p class="text-sm font-medium text-ink-muted">Teléfono</p>
+              <a href={`tel:${SITE.phoneHref}`} class="text-lg font-semibold text-brand-800 no-underline hover:underline">{SITE.phoneDisplay}</a>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700" aria-hidden="true">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+            </span>
+            <div>
+              <p class="text-sm font-medium text-ink-muted">Email</p>
+              <a href={`mailto:${SITE.email}`} class="text-lg font-semibold text-brand-800 no-underline hover:underline">{SITE.email}</a>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700" aria-hidden="true">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+            </span>
+            <div>
+              <p class="text-sm font-medium text-ink-muted">Dirección</p>
+              <address class="not-italic text-ink">
+                {SITE.address.street}<br />
+                {SITE.address.postalCode} {SITE.address.city} ({SITE.address.region})
+              </address>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700" aria-hidden="true">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+            </span>
+            <div>
+              <p class="text-sm font-medium text-ink-muted">Horario</p>
+              <p class="text-ink">{SITE.hours.display}</p>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Datos fiscales -->
+        <div class="mt-8 rounded-card border border-sand-200 bg-sand-100 p-5">
+          <h3 class="font-serif text-base font-semibold text-ink">Datos fiscales</h3>
+          <dl class="mt-3 space-y-1.5 text-sm">
+            {
+              fiscal.map((f) => (
+                <div class="flex flex-wrap gap-x-2">
+                  <dt class="font-medium text-ink-muted">{f.label}:</dt>
+                  <dd class="text-ink-soft">{f.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="lg:col-span-7">
+        <div class="card p-6 md:p-8">
+          <h2 class="font-serif text-xl font-semibold text-ink">Escríbanos</h2>
+          <p class="mt-1 text-sm text-ink-muted">Los campos marcados con * son obligatorios.</p>
+          <div class="mt-6">
+            <ContactForm />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mapa -->
+    <div class="mt-12">
+      <h2 class="font-serif text-xl font-semibold text-ink">Cómo llegar</h2>
+      <p class="mt-1 text-sm text-ink-muted">
+        El mapa solo se carga si usted lo autoriza (servicio de terceros: Google Maps).
+      </p>
+      <div class="mt-4">
+        <ConsentMap />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

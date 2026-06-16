@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────── Base ───────────────────────────── */
+@layer base {
+  :root {
+    --focus-ring: #436389;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-sand-50 text-ink font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif text-ink;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  a {
+    @apply text-brand-700 underline-offset-2;
+  }
+  a:hover {
+    @apply text-brand-900;
+  }
+
+  /* Foco visible y consistente para navegación por teclado (WCAG 2.4.7). */
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  /* No mostramos outline en clic de ratón, solo en teclado. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Imágenes responsivas por defecto. */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ─────────────────────────── Componentes ─────────────────────────── */
+@layer components {
+  .container-rm {
+    @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8;
+  }
+
+  /* Enlace de salto al contenido (skip-to-content). */
+  .skip-link {
+    @apply absolute left-4 z-50 -translate-y-20 rounded-md bg-brand-800 px-4 py-2 text-white no-underline transition-transform focus-visible:translate-y-4;
+  }
+
+  /* Botones */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-base font-semibold no-underline transition-colors duration-150;
+  }
+  .btn-primary {
+    @apply bg-brand-700 text-white hover:bg-brand-800 hover:text-white;
+  }
+  .btn-secondary {
+    @apply border border-brand-300 bg-white text-brand-800 hover:bg-brand-50 hover:text-brand-900;
+  }
+  .btn-ghost {
+    @apply text-brand-800 hover:bg-brand-50 hover:text-brand-900;
+  }
+
+  /* Filete superior dorado (detalle de marca discreto). */
+  .accent-rule {
+    @apply h-1 w-12 rounded-full bg-accent-400;
+  }
+
+  /* Tarjeta */
+  .card {
+    @apply rounded-card border border-sand-200 bg-white shadow-card transition-shadow;
+  }
+
+  /* Tipografía de artículos / páginas legales (estilo "prose" propio, ligero). */
+  .prose-rm {
+    @apply text-ink-soft;
+  }
+  .prose-rm > * + * {
+    margin-top: 1.1em;
+  }
+  .prose-rm h2 {
+    @apply mt-12 text-h2 text-ink;
+  }
+  .prose-rm h3 {
+    @apply mt-9 text-xl font-semibold text-ink;
+  }
+  .prose-rm h2 + p,
+  .prose-rm h3 + p {
+    margin-top: 0.6em;
+  }
+  .prose-rm ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+  .prose-rm ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+  .prose-rm a {
+    @apply font-medium underline;
+  }
+  .prose-rm strong {
+    @apply font-semibold text-ink;
+  }
+  .prose-rm blockquote {
+    @apply border-l-4 border-accent-300 pl-4 italic text-ink-soft;
+  }
+  .prose-rm table {
+    @apply w-full border-collapse text-left text-base;
+  }
+  .prose-rm th,
+  .prose-rm td {
+    @apply border border-sand-200 px-3 py-2 align-top;
+  }
+  .prose-rm thead th {
+    @apply bg-sand-100 font-semibold text-ink;
+  }
+  .prose-rm code {
+    @apply rounded bg-sand-100 px-1.5 py-0.5 text-[0.9em];
+  }
+}

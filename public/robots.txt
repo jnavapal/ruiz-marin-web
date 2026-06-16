@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# No indexar páginas utilitarias
+Disallow: /gracias
+
+Sitemap: https://www.ruizmarinauditores.com/sitemap-index.xml

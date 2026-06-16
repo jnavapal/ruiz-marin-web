@@ -1,0 +1,23 @@
+---
+/**
+ * Logotipo de marca como texto (wordmark). Nítido, escalable, accesible y
+ * temable. El archivo /logo-ruiz-marin.svg conserva el logo en imagen para usos
+ * que lo requieran (firma de email, documentos, etc.).
+ */
+interface Props {
+  variant?: 'dark' | 'light';
+  class?: string;
+}
+const { variant = 'dark', class: className = '' } = Astro.props;
+const nameColor = variant === 'light' ? 'text-white' : 'text-ink';
+const subColor = variant === 'light' ? 'text-sand-200' : 'text-ink-muted';
+---
+
+<span class={`inline-flex flex-col leading-none ${className}`}>
+  <span class={`font-serif text-2xl font-semibold tracking-tight ${nameColor}`}>
+    Ruiz <span class="text-accent-500">&amp;</span> Marín
+  </span>
+  <span class={`mt-1 text-[0.6875rem] font-medium uppercase tracking-[0.18em] ${subColor}`}>
+    Auditores de cuentas
+  </span>
+</span>

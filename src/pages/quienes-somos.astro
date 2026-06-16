@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Credentials from '../components/Credentials.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { PARTNERS, STATS } from '../data/site';
+
+const title = 'Quiénes somos | Ruiz & Marín, auditores de cuentas en Burgos';
+const description =
+  'Conozca a Ruiz & Marín: despacho de auditoría nacido en Burgos, con socios auditores inscritos en el ROAC y experiencia en Big Four y empresa privada. Rigor, independencia y confidencialidad.';
+
+const sectores = [
+  'Industria y fabricación',
+  'Comercio y distribución',
+  'Construcción e inmobiliario',
+  'Servicios profesionales',
+  'Hostelería y turismo',
+  'Agroalimentario',
+  'Entidades sin ánimo de lucro y fundaciones',
+  'Sector público y entidades dependientes',
+];
+
+const valores = [
+  { title: 'Independencia', text: 'El núcleo de la auditoría. Mantenemos la objetividad y evitamos cualquier conflicto de interés.' },
+  { title: 'Rigor técnico', text: 'Trabajo conforme a las NIA-ES y a la normativa del ICAC, con control de calidad interno.' },
+  { title: 'Confidencialidad', text: 'Secreto profesional del auditor y tratamiento seguro de toda la información del cliente.' },
+  { title: 'Cercanía', text: 'Trato directo con los socios y comunicación clara durante todo el encargo.' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs items={[{ name: 'Quiénes somos', path: '/quienes-somos' }]} />
+
+  <!-- Intro -->
+  <section class="container-rm py-14 md:py-20">
+    <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+      <div class="lg:col-span-7">
+        <div class="accent-rule mb-4"></div>
+        <h1 class="text-h1">Un despacho de auditoría nacido en Burgos</h1>
+        <p class="mt-5 text-lg leading-relaxed text-ink-soft">
+          Ruiz &amp; Marín nace en Burgos con vocación de servicio: poner la auditoría de cuentas al
+          alcance de pymes y profesionales con el mismo rigor que se exige a las grandes firmas, pero
+          con la cercanía y la dedicación de un despacho de trato directo.
+        </p>
+        <p class="mt-4 max-w-prose text-ink-soft">
+          Sus dos socios fundadores son auditores inscritos en el ROAC, con más de nueve años de
+          experiencia adquirida en una de las <em>Big Four</em> y en la dirección financiera de la
+          empresa privada. Esa doble mirada —la del auditor y la de quien ha estado al otro lado, en
+          la empresa— nos permite entender de verdad las necesidades de nuestros clientes.
+        </p>
+      </div>
+      <div class="lg:col-span-5">
+        <dl class="grid grid-cols-2 gap-4">
+          {
+            STATS.map((s) => (
+              <div class="rounded-card border border-sand-200 bg-white p-5 text-center">
+                <dt class="sr-only">{s.label}</dt>
+                <dd>
+                  <span class="block font-serif text-3xl font-bold text-brand-800">{s.value}</span>
+                  <span class="mt-1 block text-sm font-medium text-ink">{s.label}</span>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipo -->
+  <section class="bg-white border-y border-sand-200" aria-labelledby="equipo">
+    <div class="container-rm py-20">
+      <div class="max-w-2xl">
+        <div class="accent-rule mb-4"></div>
+        <h2 id="equipo" class="text-h2">Socios</h2>
+        <p class="mt-3 text-lg text-ink-soft">
+          Cada informe lleva la firma y la responsabilidad de un auditor inscrito en el ROAC.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {
+          PARTNERS.map((p) => (
+            <article class="card flex gap-5 p-6">
+              <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-100 font-serif text-xl font-bold text-brand-800" aria-hidden="true">
+                {p.name.replace(/[{}]/g, '').split(' ').map((w) => w[0]).join('').slice(0, 2) || 'RM'}
+              </div>
+              <div>
+                <h3 class="font-serif text-lg font-semibold text-ink">{p.name}</h3>
+                <p class="text-sm font-medium text-brand-700">{p.role} · {p.roac}</p>
+                <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{p.bio}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section class="container-rm py-20" aria-labelledby="valores">
+    <div class="max-w-2xl">
+      <div class="accent-rule mb-4"></div>
+      <h2 id="valores" class="text-h2">Nuestros valores</h2>
+    </div>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        valores.map((v) => (
+          <div class="rounded-card border border-sand-200 bg-sand-50 p-6">
+            <h3 class="font-serif text-lg font-semibold text-ink">{v.title}</h3>
+            <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{v.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Sectores -->
+  <section class="bg-white border-y border-sand-200" aria-labelledby="sectores">
+    <div class="container-rm py-20">
+      <div class="max-w-2xl">
+        <div class="accent-rule mb-4"></div>
+        <h2 id="sectores" class="text-h2">Sectores que atendemos</h2>
+        <p class="mt-3 text-lg text-ink-soft">
+          Auditamos y asesoramos a organizaciones de perfiles muy distintos en toda España.
+        </p>
+      </div>
+      <ul class="mt-8 flex flex-wrap gap-3">
+        {
+          sectores.map((s) => (
+            <li class="rounded-full border border-sand-300 bg-sand-50 px-4 py-2 text-sm font-medium text-ink-soft">
+              {s}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Credentials variant="plain" title="Avalados por las principales corporaciones del sector" />
+
+  <CtaSection />
+</BaseLayout>
