@@ -2,10 +2,13 @@
  * Generadores de datos estructurados (Schema.org / JSON-LD).
  * Centralizado para mantener coherencia de @id y datos NAP en todo el sitio.
  */
-import { SITE } from '../data/site';
+import { SITE, isPlaceholder } from '../data/site';
 
 const ORG_ID = `${SITE.url}/#organizacion`;
 const BUSINESS_ID = `${SITE.url}/#despacho`;
+
+// Solo incluimos la razón social en el Schema cuando deje de ser un placeholder.
+const legalNameProp = isPlaceholder(SITE.legalName) ? {} : { legalName: SITE.legalName };
 
 const postalAddress = {
   '@type': 'PostalAddress',
@@ -30,7 +33,7 @@ export function organizationSchema() {
     '@type': 'Organization',
     '@id': ORG_ID,
     name: SITE.name,
-    legalName: SITE.legalName,
+    ...legalNameProp,
     url: SITE.url,
     email: SITE.email,
     telephone: SITE.phoneDisplay,
@@ -58,7 +61,7 @@ export function accountingServiceSchema() {
     '@type': 'AccountingService',
     '@id': BUSINESS_ID,
     name: SITE.name,
-    legalName: SITE.legalName,
+    ...legalNameProp,
     url: SITE.url,
     email: SITE.email,
     telephone: SITE.phoneDisplay,

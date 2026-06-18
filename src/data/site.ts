@@ -29,18 +29,19 @@ export const SITE = {
 
   // ── Localización ──
   address: {
-    street: '{{Calle y número}}',
-    postalCode: '{{CP}}',
-    city: 'Burgos',
+    street: 'Calle Tobares',
+    // OJO: 19140 es prefijo de Guadalajara; Quintanilla Vivar (Burgos) suele ser 09197. Confirmar.
+    postalCode: '19140',
+    city: 'Quintanilla Vivar',
     region: 'Burgos',
     regionCommunity: 'Castilla y León',
     country: 'España',
     countryCode: 'ES',
   },
-  // Coordenadas APROXIMADAS del centro de Burgos. Sustituir por las exactas del despacho.
+  // Coordenadas APROXIMADAS de Quintanilla Vivar (Burgos). Sustituir por las exactas del despacho.
   geo: {
-    lat: 42.3408,
-    lng: -3.6997,
+    lat: 42.4086,
+    lng: -3.6606,
   },
   // Horario de atención (PLACEHOLDER: confirmar antes de publicar).
   hours: {
@@ -67,8 +68,8 @@ export const SITE = {
 
 /** Años de experiencia y cifras de confianza (E-E-A-T). Ajustar a datos reales. */
 export const STATS = [
-  { value: '+9', label: 'años de experiencia', detail: 'de los socios en Big Four y dirección financiera de empresa privada' },
-  { value: '8', label: 'sectores atendidos', detail: 'de la industria al sector público y el tercer sector' },
+  { value: '+10', label: 'años de experiencia', detail: 'de los socios en Big Four y dirección financiera de empresa privada' },
+  { value: '+100', label: 'clientes atendidos', detail: 'pymes, fundaciones y profesionales de distintos sectores' },
   { value: '4', label: 'corporaciones profesionales', detail: 'ICJCE, ROAC, Colegio de Economistas y AECA' },
 ] as const;
 
@@ -77,7 +78,7 @@ export const CREDENTIALS = [
   {
     abbr: 'ROAC',
     name: 'Registro Oficial de Auditores de Cuentas',
-    detail: 'Inscripción nº {{Nº ROAC}}. Habilitación legal para firmar informes de auditoría en España.',
+    detail: 'Habilitación legal para firmar informes de auditoría en España. Nuestros socios están inscritos en el ROAC (nº 24384 y nº 24319).',
   },
   {
     abbr: 'ICJCE',
@@ -99,16 +100,18 @@ export const CREDENTIALS = [
 /** Socios (placeholders: sustituir por nombres, cargos y nº ROAC reales). */
 export const PARTNERS = [
   {
-    name: '{{Nombre del socio 1}}',
+    name: 'Marcos Ruiz Fontaneda',
     role: 'Socio auditor',
-    roac: 'ROAC nº {{XXXXX}}',
-    bio: '{{Auditor de cuentas inscrito en el ROAC. Más de 9 años de experiencia, con trayectoria previa en una de las Big Four y en dirección financiera de empresa privada.}}',
+    roac: 'ROAC nº 24384',
+    // Bio pendiente de personalizar por el despacho.
+    bio: 'Auditor de cuentas inscrito en el ROAC. Más de 10 años de experiencia, con trayectoria previa en una de las Big Four y en dirección financiera de empresa privada.',
   },
   {
-    name: '{{Nombre del socio 2}}',
-    role: 'Socio auditor',
-    roac: 'ROAC nº {{XXXXX}}',
-    bio: '{{Auditor de cuentas inscrito en el ROAC. Más de 9 años de experiencia, con trayectoria previa en una de las Big Four y en dirección financiera de empresa privada.}}',
+    name: 'Estefanía Marín Solís',
+    role: 'Socia auditora',
+    roac: 'ROAC nº 24319',
+    // Bio pendiente de personalizar por el despacho.
+    bio: 'Auditora de cuentas inscrita en el ROAC. Más de 10 años de experiencia, con trayectoria previa en una de las Big Four y en dirección financiera de empresa privada.',
   },
 ] as const;
 
@@ -161,6 +164,13 @@ export const SERVICES = [
 ] as const;
 
 export type Service = (typeof SERVICES)[number];
+
+/** True si el valor sigue siendo un placeholder {{ }} sin rellenar. */
+export const isPlaceholder = (v: string): boolean => v.includes('{{');
+
+/** Valor limpio (sin llaves) o un texto de respaldo si todavía es un placeholder. */
+export const cleanField = (v: string, fallback = ''): string =>
+  isPlaceholder(v) ? fallback : v.replace(/[{}]/g, '');
 
 /** Navegación principal. */
 export const NAV = [

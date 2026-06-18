@@ -70,16 +70,16 @@ editor (`{{`). Casi todos están centralizados en **`src/data/site.ts`**.
 
 | Placeholder                         | Dónde                              | Qué poner                                            |
 | ----------------------------------- | ---------------------------------- | --------------------------------------------------- |
-| `{{Ruiz & Marín Auditores, S.L.}}`  | `site.ts` → `legalName`            | Razón social completa exacta                        |
-| `{{NIF/CIF}}`                        | `site.ts` → `fiscal.nif`           | NIF de la sociedad                                  |
-| `{{Nº ROAC de la sociedad}}`        | `site.ts` → `fiscal.roacFirma`     | Nº de inscripción ROAC del despacho                 |
-| Registro Mercantil (tomo/folio/hoja)| `site.ts` → `fiscal.registroMercantil` | Datos registrales                               |
-| `{{Calle y número}}`, `{{CP}}`      | `site.ts` → `address`              | Dirección postal exacta                             |
-| Coordenadas `geo.lat` / `geo.lng`   | `site.ts` → `geo`                  | Coordenadas exactas (ahora: centro de Burgos)       |
-| Horario                             | `site.ts` → `hours`                | Confirmar el horario real de atención               |
-| `{{Nombre del socio 1 / 2}}`        | `site.ts` → `PARTNERS`             | Nombres, cargos y nº ROAC de cada socio             |
-| Nº ROAC en credenciales/`llms.txt`  | `site.ts` → `CREDENTIALS`, `public/llms.txt` | Nº ROAC                                   |
-| `{{nº}}` sectores                   | `site.ts` → `STATS`                | Nº concreto de sectores atendidos                   |
+| `{{Ruiz & Marín Auditores, S.L.}}`  | `site.ts` → `legalName`            | Razón social / forma jurídica exacta (S.L., S.C.P., etc.) |
+| `{{NIF/CIF}}`                        | `site.ts` → `fiscal.nif`           | NIF de la sociedad o de los titulares               |
+| `{{Nº ROAC de la sociedad}}`        | `site.ts` → `fiscal.roacFirma`     | Nº ROAC del despacho como sociedad, si lo tiene (los de los socios ya están) |
+| Registro Mercantil (tomo/folio/hoja)| `site.ts` → `fiscal.registroMercantil` | Datos registrales, si aplica                    |
+| Código postal (revisar)             | `site.ts` → `address.postalCode`   | ⚠️ Confirmar: 19140 es prefijo de Guadalajara; Quintanilla Vivar (Burgos) suele ser 09197 |
+| Número de calle                     | `site.ts` → `address.street`       | Añadir el número si la dirección lo tiene           |
+| Coordenadas `geo.lat` / `geo.lng`   | `site.ts` → `geo`                  | Coordenadas exactas (ahora: aprox. Quintanilla Vivar) |
+| Bios de socios                      | `site.ts` → `PARTNERS[].bio`       | Personalizar las bios (ahora son genéricas)         |
+
+> **Datos ya integrados:** dirección (Calle Tobares, Quintanilla Vivar), socios (Marcos Ruiz Fontaneda · ROAC 24384; Estefanía Marín Solís · ROAC 24319), +10 años de experiencia, +100 clientes, horario y contacto. La razón social, el NIF y los datos registrales solo se usan en las páginas legales (aviso legal y privacidad).
 
 > Tras rellenar `src/data/site.ts`, los datos se propagan automáticamente a páginas, footer,
 > avisos legales y datos estructurados (JSON-LD). Revisa también `public/llms.txt`.

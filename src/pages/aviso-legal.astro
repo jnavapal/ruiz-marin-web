@@ -1,12 +1,13 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
-import { SITE } from '../data/site';
+import { SITE, PARTNERS, cleanField } from '../data/site';
 
-const titular = SITE.legalName.replace(/[{}]/g, '');
-const nif = SITE.fiscal.nif.replace(/[{}]/g, '');
-const roac = SITE.fiscal.roacFirma.replace(/[{}]/g, '');
-const registro = SITE.fiscal.registroMercantil.replace(/[{}]/g, '');
-const direccion = `${SITE.address.street.replace(/[{}]/g, '')}, ${SITE.address.postalCode.replace(/[{}]/g, '')} ${SITE.address.city} (${SITE.address.region})`;
+const PENDIENTE = '[pendiente de completar]';
+const titular = cleanField(SITE.legalName, SITE.name);
+const nif = cleanField(SITE.fiscal.nif, PENDIENTE);
+const registro = cleanField(SITE.fiscal.registroMercantil, PENDIENTE);
+const direccion = `${cleanField(SITE.address.street)}, ${cleanField(SITE.address.postalCode)} ${SITE.address.city} (${SITE.address.region})`;
+const roacSocios = PARTNERS.map((p) => `${p.name} (${p.roac})`).join(' y ');
 ---
 
 <LegalLayout
@@ -32,9 +33,9 @@ const direccion = `${SITE.address.street.replace(/[{}]/g, '')}, ${SITE.address.p
     <li><strong>Teléfono:</strong> <a href={`tel:${SITE.phoneHref}`}>{SITE.phoneDisplay}</a></li>
     <li><strong>Datos registrales:</strong> {registro}</li>
     <li>
-      <strong>Inscripción profesional:</strong> Auditor de cuentas inscrito en el Registro Oficial de
-      Auditores de Cuentas (ROAC), {roac}, dependiente del Instituto de Contabilidad y Auditoría de
-      Cuentas (ICAC).
+      <strong>Inscripción profesional:</strong> Auditores de cuentas inscritos en el Registro Oficial
+      de Auditores de Cuentas (ROAC), dependiente del Instituto de Contabilidad y Auditoría de Cuentas
+      (ICAC): {roacSocios}.
     </li>
   </ul>
 

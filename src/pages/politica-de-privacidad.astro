@@ -1,10 +1,11 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
-import { SITE } from '../data/site';
+import { SITE, cleanField } from '../data/site';
 
-const titular = SITE.legalName.replace(/[{}]/g, '');
-const nif = SITE.fiscal.nif.replace(/[{}]/g, '');
-const direccion = `${SITE.address.street.replace(/[{}]/g, '')}, ${SITE.address.postalCode.replace(/[{}]/g, '')} ${SITE.address.city} (${SITE.address.region})`;
+const PENDIENTE = '[pendiente de completar]';
+const titular = cleanField(SITE.legalName, SITE.name);
+const nif = cleanField(SITE.fiscal.nif, PENDIENTE);
+const direccion = `${cleanField(SITE.address.street)}, ${cleanField(SITE.address.postalCode)} ${SITE.address.city} (${SITE.address.region})`;
 ---
 
 <LegalLayout
