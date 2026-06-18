@@ -70,16 +70,18 @@ editor (`{{`). Casi todos están centralizados en **`src/data/site.ts`**.
 
 | Placeholder                         | Dónde                              | Qué poner                                            |
 | ----------------------------------- | ---------------------------------- | --------------------------------------------------- |
-| `{{Ruiz & Marín Auditores, S.L.}}`  | `site.ts` → `legalName`            | Razón social / forma jurídica exacta (S.L., S.C.P., etc.) |
-| `{{NIF/CIF}}`                        | `site.ts` → `fiscal.nif`           | NIF de la sociedad o de los titulares               |
-| `{{Nº ROAC de la sociedad}}`        | `site.ts` → `fiscal.roacFirma`     | Nº ROAC del despacho como sociedad, si lo tiene (los de los socios ya están) |
-| Registro Mercantil (tomo/folio/hoja)| `site.ts` → `fiscal.registroMercantil` | Datos registrales, si aplica                    |
-| Código postal (revisar)             | `site.ts` → `address.postalCode`   | ⚠️ Confirmar: 19140 es prefijo de Guadalajara; Quintanilla Vivar (Burgos) suele ser 09197 |
-| Número de calle                     | `site.ts` → `address.street`       | Añadir el número si la dirección lo tiene           |
+| `{{NIF de cada titular}}`           | `site.ts` → `fiscal.nif`           | NIF de los titulares (personas físicas). Único campo legal que falta |
 | Coordenadas `geo.lat` / `geo.lng`   | `site.ts` → `geo`                  | Coordenadas exactas (ahora: aprox. Quintanilla Vivar) |
 | Bios de socios                      | `site.ts` → `PARTNERS[].bio`       | Personalizar las bios (ahora son genéricas)         |
 
-> **Datos ya integrados:** dirección (Calle Tobares, Quintanilla Vivar), socios (Marcos Ruiz Fontaneda · ROAC 24384; Estefanía Marín Solís · ROAC 24319), +10 años de experiencia, +100 clientes, horario y contacto. La razón social, el NIF y los datos registrales solo se usan en las páginas legales (aviso legal y privacidad).
+> **Estructura legal:** los dos auditores ejercen como **personas físicas** bajo el nombre comercial
+> «Ruiz & Marín». Por eso **no hay razón social, ni ROAC de sociedad, ni Registro Mercantil**: la
+> habilitación es el ROAC individual de cada uno (ya integrado). El único dato legal pendiente es el
+> **NIF** de los titulares para el aviso legal y la política de privacidad.
+
+> **Datos ya integrados:** dirección completa (Calle Tobares 7, 09140 Quintanilla Vivar, Burgos),
+> titulares Marcos Ruiz Fontaneda (ROAC 24384) y Estefanía Marín Solís (ROAC 24319), +10 años de
+> experiencia, +100 clientes, horario y contacto.
 
 > Tras rellenar `src/data/site.ts`, los datos se propagan automáticamente a páginas, footer,
 > avisos legales y datos estructurados (JSON-LD). Revisa también `public/llms.txt`.

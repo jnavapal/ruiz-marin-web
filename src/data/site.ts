@@ -12,7 +12,8 @@ export const SITE = {
   name: 'Ruiz & Marín',
   shortName: 'Ruiz & Marín',
   // Razón social completa para avisos legales y Schema (placeholder).
-  legalName: '{{Ruiz & Marín Auditores, S.L.}}',
+  // Ejercen como personas físicas (no hay sociedad): el titular son los dos auditores.
+  legalName: 'Marcos Ruiz Fontaneda y Estefanía Marín Solís',
   tagline: 'Auditoría de cuentas con rigor, independencia y confidencialidad',
   description:
     'Despacho de auditoría de cuentas inscrito en el ROAC. Auditoría legal y voluntaria, ' +
@@ -29,9 +30,8 @@ export const SITE = {
 
   // ── Localización ──
   address: {
-    street: 'Calle Tobares',
-    // OJO: 19140 es prefijo de Guadalajara; Quintanilla Vivar (Burgos) suele ser 09197. Confirmar.
-    postalCode: '19140',
+    street: 'Calle Tobares 7',
+    postalCode: '09140',
     city: 'Quintanilla Vivar',
     region: 'Burgos',
     regionCommunity: 'Castilla y León',
@@ -53,12 +53,10 @@ export const SITE = {
     ],
   },
 
-  // ── Datos fiscales y registrales (PLACEHOLDERS) ──
+  // ── Datos fiscales ──
+  // Ejercen como personas físicas: no hay razón social, ni ROAC de sociedad, ni Registro Mercantil.
   fiscal: {
-    nif: '{{NIF/CIF}}',
-    roacFirma: '{{Nº ROAC de la sociedad}}',
-    registroMercantil:
-      'Inscrita en el Registro Mercantil de {{Burgos}}, Tomo {{tomo}}, Folio {{folio}}, Hoja {{hoja}}',
+    nif: '{{NIF de cada titular}}',
   },
 
   // ── Redes sociales ──
